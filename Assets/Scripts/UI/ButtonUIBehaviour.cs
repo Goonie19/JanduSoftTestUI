@@ -15,6 +15,8 @@ public class ButtonUIBehaviour : MonoBehaviour
     public float FinalScaleWhenEntering;
     [Range(0.001f, 0.2f)]
     public float TimeToZoomButton;
+    [Range(1, 5)]
+    public float ButtonIconPunchEffectStrength;
 
 
     private Sequence _iconSequence;
@@ -30,7 +32,7 @@ public class ButtonUIBehaviour : MonoBehaviour
         
         _iconSequence.Append(transform.DOScale(FinalScaleWhenEntering, TimeToZoomButton));
         
-        _iconSequence.Join(ButtonIconImage.transform.DOPunchRotation(Vector3.forward, 0.5f).SetLoops(-1));
+        _iconSequence.Join(ButtonIconImage.transform.DOPunchRotation(Vector3.forward * ButtonIconPunchEffectStrength, 0.5f).SetLoops(-1));
         _iconSequence.Join(ButtonIconImage.transform.DOScale(FinalScaleWhenEntering, TimeToZoomButton));
 
         _iconSequence.Play();
